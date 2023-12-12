@@ -3,4 +3,6 @@ namespace Dominio.Entities;
 
         public string ? Nombre { get; set; }
 
+        public ICollection<Perfil> ? Perfiles { get; set; }
+
     }

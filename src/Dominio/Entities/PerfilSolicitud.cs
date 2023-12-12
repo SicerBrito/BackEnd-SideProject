@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace Dominio.Entities;
+    public class PerfilSolicitud : BaseEntity{
 
-namespace Dominio.Entities
-{
-    public class PerfilSolicitud
-    {
-        
+        public int FkPerfilId { get; set; }
+        public Perfil ? Perfiles { get; set; }
+        public int FkSolicitudId { get; set; }
+        public Solicitud ? Solicitudes { get; set; }
+
     }
-}

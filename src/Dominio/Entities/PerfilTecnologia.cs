@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace Dominio.Entities;
+    public class PerfilTecnologia : BaseEntity{
 
-namespace Dominio.Entities
-{
-    public class PerfilTecnologia
-    {
-        
+        public int FkPerfilId { get; set; }
+        public Perfil ? Perfiles { get; set; }
+        public int FkTecnologiaId { get; set; }
+        public Tecnologia ? Tecnologias { get; set; }
+
     }
-}

@@ -5,4 +5,23 @@ Proyecto Fullstack para Campuslands en 10 Dias
 ![](./drawSQL-laostiavital.png)
 
 
+---
+
+### Migraciones
+Crear
+```Terminal
+dotnet ef migrations add InitialCreate --project ./Persistencia/ --startup-project ./API/ --output-dir ./Data/Migrations/
+```
+
+Actualizar
+```Terminal
+dotnet ef database update --project ./Persistencia/ --startup-project ./API/  
+```
+---
+
 ### Consultas
+
+
+
+
+---

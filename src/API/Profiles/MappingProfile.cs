@@ -1,5 +1,4 @@
 using API.Dtos;
-using API.Dtos.DtosProject;
 using API.Dtos.Generic;
 using AutoMapper;
 using Dominio.Entities;
@@ -10,14 +9,6 @@ namespace API.Profiles;
 
             CreateMap<Rol, RolDto>()
                 .ReverseMap();
-
-                
-            //TODO: Ejemplo
-            // CreateMap<NombreDto1, NombreEntidad1>()
-            //     .ReverseMap();
-
-            // CreateMap<NombreDto2, NombreEntidad2>()
-            //     .ReverseMap();
 
         }
     }

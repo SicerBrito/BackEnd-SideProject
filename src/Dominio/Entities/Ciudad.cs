@@ -5,6 +5,6 @@ namespace Dominio.Entities;
         public int FkDepartamentoId { get; set; }
         public Departamento ? Departamentos { get; set; }
 
-        public ICollection<Perfil> ? Perfils { get; set; }
+        public ICollection<Perfil> ? Perfiles { get; set; }
 
     }
