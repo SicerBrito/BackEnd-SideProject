@@ -3,9 +3,8 @@ namespace API.Helpers;
         
         public enum Roles{
             Administrador,
-            Gerente,
-            Empleado
+            Empresa
         }
-        public const Roles rol_predeterminado = Roles.Empleado;
+        public const Roles rol_predeterminado = Roles.Empresa;
 
 }

@@ -111,7 +111,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 FkSeniorityId = 2,
                 FkEspecialidadId = 2,
                 FkUbicacionId = 2,
-                PretensionSalarialUSD = 70000,
+                PretensionSalarialUSD = 7000,
                 FkNivelInglesId = 2,
                 FkDisponibilidadId = 2
             },
@@ -124,9 +124,9 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 FkSeniorityId = 3,
                 FkEspecialidadId = 3,
                 FkUbicacionId = 3,
-                PretensionSalarialUSD = 80000,
+                PretensionSalarialUSD = 8000,
                 FkNivelInglesId = 3,
-                FkDisponibilidadId = 3
+                FkDisponibilidadId = 1
             },
             new Perfil
             {
@@ -137,7 +137,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 FkSeniorityId = 1,
                 FkEspecialidadId = 2,
                 FkUbicacionId = 1,
-                PretensionSalarialUSD = 75000,
+                PretensionSalarialUSD = 5000,
                 FkNivelInglesId = 2,
                 FkDisponibilidadId = 1
             },
@@ -150,7 +150,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 FkSeniorityId = 2,
                 FkEspecialidadId = 1,
                 FkUbicacionId = 2,
-                PretensionSalarialUSD = 65000,
+                PretensionSalarialUSD = 5000,
                 FkNivelInglesId = 1,
                 FkDisponibilidadId = 2
             }
