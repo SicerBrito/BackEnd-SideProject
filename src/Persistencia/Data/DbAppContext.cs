@@ -17,6 +17,7 @@ namespace Persistencia.Data;
         public DbSet<Departamento> ? Departamentos { get; set; } = null!;
         public DbSet<DisponibilidadViaje> ? DisponibilidadViajes { get; set; } = null!;
         public DbSet<Especialidad> ? Especialidades { get; set; } = null!;
+        public DbSet<Genero> ? Generos { get; set; } = null!;
         public DbSet<NivelIngles> ? NivelIngles { get; set; } = null!;
         public DbSet<Pais> ? Pais { get; set; } = null!;
         public DbSet<Perfil> ? Perfiles { get; set; } = null!;

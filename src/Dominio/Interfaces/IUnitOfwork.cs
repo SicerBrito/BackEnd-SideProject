@@ -8,6 +8,7 @@ namespace Dominio.Interfaces;
         IDepartamento ? Departamentos { get; }
         IDisponibilidadViaje ? DisponibilidadViajes { get; }
         IEspecialidad ? Especialidades { get; }
+        IGenero ? Generos { get; }
         INivelIngles ? NivelIngles { get; }
         IPais ? Pais { get; }
         IPerfil ? Perfiles { get; }

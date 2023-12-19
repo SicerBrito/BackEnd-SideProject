@@ -34,6 +34,15 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
             .HasColumnType("varchar")
             .HasMaxLength(255)
             .IsRequired();
+
+        builder.Property(p => p.FkGeneroId)
+            .HasColumnName("FkGeneroId")
+            .HasColumnType("int")
+            .IsRequired();
+
+        builder.HasOne(p => p.Generos)
+            .WithMany(p => p.Perfiles)
+            .HasForeignKey(p => p.FkGeneroId);
         
         builder.Property(p => p.FkSeniorityId)
             .HasColumnName("FkSeniorityId")
@@ -97,6 +106,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 Email = "correo1@example.com",
                 FkSeniorityId = 1,
                 FkEspecialidadId = 1,
+                FkGeneroId = 1,
                 FkUbicacionId = 1,
                 PretensionSalarialUSD = 60000,
                 FkNivelInglesId = 1,
@@ -110,6 +120,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 Email = "correo2@example.com",
                 FkSeniorityId = 2,
                 FkEspecialidadId = 2,
+                FkGeneroId = 4,
                 FkUbicacionId = 2,
                 PretensionSalarialUSD = 7000,
                 FkNivelInglesId = 2,
@@ -123,6 +134,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 Email = "correo3@example.com",
                 FkSeniorityId = 3,
                 FkEspecialidadId = 3,
+                FkGeneroId = 1,
                 FkUbicacionId = 3,
                 PretensionSalarialUSD = 8000,
                 FkNivelInglesId = 3,
@@ -136,6 +148,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 Email = "correo4@example.com",
                 FkSeniorityId = 1,
                 FkEspecialidadId = 2,
+                FkGeneroId = 3,
                 FkUbicacionId = 1,
                 PretensionSalarialUSD = 5000,
                 FkNivelInglesId = 2,
@@ -149,6 +162,7 @@ public class PerfilConfiguration : IEntityTypeConfiguration<Perfil>
                 Email = "correo5@example.com",
                 FkSeniorityId = 2,
                 FkEspecialidadId = 1,
+                FkGeneroId = 2,
                 FkUbicacionId = 2,
                 PretensionSalarialUSD = 5000,
                 FkNivelInglesId = 1,

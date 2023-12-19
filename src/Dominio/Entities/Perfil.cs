@@ -4,6 +4,8 @@ namespace Dominio.Entities;
         public string ? Nombres { get; set; }
         public string ? Apellidos { get; set; }
         public string ? Email { get; set; }
+        public int FkGeneroId { get; set; }
+        public Genero ? Generos { get; set; }
         public int FkSeniorityId { get; set; }
         public Seniority ? Senioritys { get; set; }
         public int FkEspecialidadId { get; set; }

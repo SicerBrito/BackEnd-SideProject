@@ -6,6 +6,7 @@ namespace API.Dtos.DtosProject;
         public string ? Nombres { get; set; }
         public string ? Apellidos { get; set; }
         public string ? Email { get; set; }
+        public int FkGeneroId { get; set; }
         public int FkSeniorityId { get; set; }
         public int FkEspecialidadId { get; set; }
         public int FkUbicacionId { get; set; }

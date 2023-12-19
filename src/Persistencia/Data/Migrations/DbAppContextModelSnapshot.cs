@@ -296,6 +296,57 @@ namespace Persistencia.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Dominio.Entities.Genero", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("IdGenero")
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar")
+                        .HasColumnName("Nombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genero", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Masculino"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Femenino"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Desconocido"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Helicoptero Apache"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nombre = "Prefiero no decirlo"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nombre = "LGBTTTIOQ"
+                        });
+                });
+
             modelBuilder.Entity("Dominio.Entities.NivelIngles", b =>
                 {
                     b.Property<int>("Id")
@@ -441,6 +492,10 @@ namespace Persistencia.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("FkEspecialidadId");
 
+                    b.Property<int>("FkGeneroId")
+                        .HasColumnType("int")
+                        .HasColumnName("FkGeneroId");
+
                     b.Property<int>("FkNivelInglesId")
                         .HasColumnType("int")
                         .HasColumnName("FkNivelInglesId");
@@ -469,6 +524,8 @@ namespace Persistencia.Data.Migrations
 
                     b.HasIndex("FkEspecialidadId");
 
+                    b.HasIndex("FkGeneroId");
+
                     b.HasIndex("FkNivelInglesId");
 
                     b.HasIndex("FkSeniorityId");
@@ -485,6 +542,7 @@ namespace Persistencia.Data.Migrations
                             Email = "correo1@example.com",
                             FkDisponibilidadId = 1,
                             FkEspecialidadId = 1,
+                            FkGeneroId = 1,
                             FkNivelInglesId = 1,
                             FkSeniorityId = 1,
                             FkUbicacionId = 1,
@@ -498,6 +556,7 @@ namespace Persistencia.Data.Migrations
                             Email = "correo2@example.com",
                             FkDisponibilidadId = 2,
                             FkEspecialidadId = 2,
+                            FkGeneroId = 4,
                             FkNivelInglesId = 2,
                             FkSeniorityId = 2,
                             FkUbicacionId = 2,
@@ -511,6 +570,7 @@ namespace Persistencia.Data.Migrations
                             Email = "correo3@example.com",
                             FkDisponibilidadId = 1,
                             FkEspecialidadId = 3,
+                            FkGeneroId = 1,
                             FkNivelInglesId = 3,
                             FkSeniorityId = 3,
                             FkUbicacionId = 3,
@@ -524,6 +584,7 @@ namespace Persistencia.Data.Migrations
                             Email = "correo4@example.com",
                             FkDisponibilidadId = 1,
                             FkEspecialidadId = 2,
+                            FkGeneroId = 3,
                             FkNivelInglesId = 2,
                             FkSeniorityId = 1,
                             FkUbicacionId = 1,
@@ -537,6 +598,7 @@ namespace Persistencia.Data.Migrations
                             Email = "correo5@example.com",
                             FkDisponibilidadId = 2,
                             FkEspecialidadId = 1,
+                            FkGeneroId = 2,
                             FkNivelInglesId = 1,
                             FkSeniorityId = 2,
                             FkUbicacionId = 2,
@@ -1292,6 +1354,12 @@ namespace Persistencia.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Dominio.Entities.Genero", "Generos")
+                        .WithMany("Perfiles")
+                        .HasForeignKey("FkGeneroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Dominio.Entities.NivelIngles", "NivelDeIngles")
                         .WithMany("Perfiles")
                         .HasForeignKey("FkNivelInglesId")
@@ -1315,6 +1383,8 @@ namespace Persistencia.Data.Migrations
                     b.Navigation("DisponibilidadViajes");
 
                     b.Navigation("Especialidades");
+
+                    b.Navigation("Generos");
 
                     b.Navigation("NivelDeIngles");
 
@@ -1405,6 +1475,11 @@ namespace Persistencia.Data.Migrations
                 });
 
             modelBuilder.Entity("Dominio.Entities.Especialidad", b =>
+                {
+                    b.Navigation("Perfiles");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Genero", b =>
                 {
                     b.Navigation("Perfiles");
                 });

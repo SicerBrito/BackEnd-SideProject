@@ -48,6 +48,21 @@ namespace Persistencia.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Genero",
+                columns: table => new
+                {
+                    IdGenero = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nombre = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genero", x => x.IdGenero);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "NivelIngles",
                 columns: table => new
                 {
@@ -270,6 +285,7 @@ namespace Persistencia.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    FkGeneroId = table.Column<int>(type: "int", nullable: false),
                     FkSeniorityId = table.Column<int>(type: "int", nullable: false),
                     FkEspecialidadId = table.Column<int>(type: "int", nullable: false),
                     FkUbicacionId = table.Column<int>(type: "int", nullable: false),
@@ -297,6 +313,12 @@ namespace Persistencia.Data.Migrations
                         column: x => x.FkEspecialidadId,
                         principalTable: "Especialidad",
                         principalColumn: "IdEspecialidad",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Perfil_Genero_FkGeneroId",
+                        column: x => x.FkGeneroId,
+                        principalTable: "Genero",
+                        principalColumn: "IdGenero",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Perfil_NivelIngles_FkNivelInglesId",
@@ -391,6 +413,19 @@ namespace Persistencia.Data.Migrations
                     { 8, "Especialidad8" },
                     { 9, "Especialidad9" },
                     { 10, "Especialidad10" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Genero",
+                columns: new[] { "IdGenero", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Masculino" },
+                    { 2, "Femenino" },
+                    { 3, "Desconocido" },
+                    { 4, "Helicoptero Apache" },
+                    { 5, "Prefiero no decirlo" },
+                    { 6, "LGBTTTIOQ" }
                 });
 
             migrationBuilder.InsertData(
@@ -553,14 +588,14 @@ namespace Persistencia.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Perfil",
-                columns: new[] { "IdPerfil", "Apellidos", "Email", "FkDisponibilidadId", "FkEspecialidadId", "FkNivelInglesId", "FkSeniorityId", "FkUbicacionId", "Nombres", "PretensionSalarialUSD" },
+                columns: new[] { "IdPerfil", "Apellidos", "Email", "FkDisponibilidadId", "FkEspecialidadId", "FkGeneroId", "FkNivelInglesId", "FkSeniorityId", "FkUbicacionId", "Nombres", "PretensionSalarialUSD" },
                 values: new object[,]
                 {
-                    { 1, "Apellido1", "correo1@example.com", 1, 1, 1, 1, 1, "Nombre1", 60000 },
-                    { 2, "Apellido2", "correo2@example.com", 2, 2, 2, 2, 2, "Nombre2", 7000 },
-                    { 3, "Apellido3", "correo3@example.com", 1, 3, 3, 3, 3, "Nombre3", 8000 },
-                    { 4, "Apellido4", "correo4@example.com", 1, 2, 2, 1, 1, "Nombre4", 5000 },
-                    { 5, "Apellido5", "correo5@example.com", 2, 1, 1, 2, 2, "Nombre5", 5000 }
+                    { 1, "Apellido1", "correo1@example.com", 1, 1, 1, 1, 1, 1, "Nombre1", 60000 },
+                    { 2, "Apellido2", "correo2@example.com", 2, 2, 4, 2, 2, 2, "Nombre2", 7000 },
+                    { 3, "Apellido3", "correo3@example.com", 1, 3, 1, 3, 3, 3, "Nombre3", 8000 },
+                    { 4, "Apellido4", "correo4@example.com", 1, 2, 3, 2, 1, 1, "Nombre4", 5000 },
+                    { 5, "Apellido5", "correo5@example.com", 2, 1, 2, 1, 2, 2, "Nombre5", 5000 }
                 });
 
             migrationBuilder.InsertData(
@@ -616,6 +651,11 @@ namespace Persistencia.Data.Migrations
                 name: "IX_Perfil_FkEspecialidadId",
                 table: "Perfil",
                 column: "FkEspecialidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Perfil_FkGeneroId",
+                table: "Perfil",
+                column: "FkGeneroId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Perfil_FkNivelInglesId",
@@ -713,6 +753,9 @@ namespace Persistencia.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Especialidad");
+
+            migrationBuilder.DropTable(
+                name: "Genero");
 
             migrationBuilder.DropTable(
                 name: "NivelIngles");
